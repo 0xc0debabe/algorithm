@@ -49,9 +49,9 @@ public class Week1_5 {
         tab(3);
         System.out.println("일\t월\t화\t수\t목\t금\t토");
 
-        int prevTab = prevStartDay - 1; // 6
-        int currTab = currStartDay - 1; // 1
-        int nextTab = nextStartDay - 1; // 4
+        int prevTab = prevStartDay - 1;
+        int currTab = currStartDay - 1;
+        int nextTab = nextStartDay - 1;
 
         int prevDay = 1;
         int currDay = 1;
@@ -78,45 +78,59 @@ public class Week1_5 {
     static void printCal2(int prevDay, int prevEndDay, int currDay, int currEndDay, int nextDay, int nextEndDay) {
         while (true) {
             int idx = 1;
-            for (int i = prevDay; i <= prevEndDay; i++) {
-                System.out.printf("%02d", prevDay);
-                tab(1);
-                prevDay = i;
-                idx++;
+            for (int i = prevDay; i <= 38; i++) {
+                if (prevDay <= prevEndDay) {
+                    System.out.printf("%02d", prevDay);
+                    tab(1);
+                    prevDay++;
+                } else {
+                    tab(1);
+                }
 
                 if (idx % 7 == 0) {
-                    tab(4);
+                    tab(2);
                     idx = 1;
                     break;
                 }
+                idx++;
             }
 
-            for (int i = currDay; i < currEndDay; i++) {
-                System.out.printf("%02d", currDay);
-                tab(1);
-                currDay = i;
-                idx++;
+            for (int i = currDay; i <= 38; i++) {
+                if (currDay <= currEndDay) {
+                    System.out.printf("%02d", currDay);
+                    tab(1);
+                    currDay++;
+                } else {
+                    tab(1);
+                }
 
                 if (idx % 7 == 0) {
-                    tab(4);
+                    tab(2);
                     idx = 1;
                     break;
                 }
+                idx++;
             }
 
-            for (int i = nextDay; i < nextEndDay; i++) {
-                System.out.printf("%02d", nextDay);
-                tab(1);
-                nextDay = i;
-                idx++;
+            for (int i = nextDay; i <= 38; i++) {
+                if (nextDay <= nextEndDay) {
+                    System.out.printf("%02d", nextDay);
+                    tab(1);
+                    nextDay++;
+                } else {
+                    tab(1);
+                }
 
                 if (idx % 7 == 0) {
                     System.out.println();
                     break;
                 }
+                idx++;
             }
 
-            if ()
+            if (prevDay == prevEndDay + 1 && currDay == currEndDay + 1 && nextDay == nextEndDay + 1) {
+                break;
+            }
         }
     }
 
@@ -126,7 +140,7 @@ public class Week1_5 {
     }
 
     static int findEndDay(Calendar end, int year, int month) {
-        end.set(year, month - 1, 1);
+        end.set(year, month, 1);
         end.add(Calendar.DATE, -1);
         return end.get(Calendar.DATE);
     }
